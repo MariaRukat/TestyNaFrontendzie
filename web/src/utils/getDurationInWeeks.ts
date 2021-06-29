@@ -4,7 +4,7 @@ import {
 } from "../types/PromotionDurationType";
 
 export const getDurationInWeeks = (days: number): PromotionDurationOutput => {
-  if (Number.isNaN(days)) {
+  if (Number.isNaN(Number(days))) {
     throw new Error("Days should be number");
   }
 

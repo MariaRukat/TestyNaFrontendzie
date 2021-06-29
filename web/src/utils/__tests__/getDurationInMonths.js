@@ -1,25 +1,21 @@
 import { getDurationInMonths } from "../getDurationInMonths";
 
 describe("getDurationInMonths", () => {
-  it("throws error when provided parameter is not a number", () => {
-    const result = () => getDurationInMonths("notNumber");
-
+  it("throw error when argument is incorrect", () => {
+    const result = () => getDurationInMonths("not number");
     expect(result).toThrowError();
-    expect(result).toThrowError("Days should be number");
 
-    expect(() => getDurationInMonths(24)).not.toThrowError();
-    expect(() => getDurationInMonths("24")).not.toThrowError();
+    expect(() => getDurationInMonths(20)).not.toThrowError();
   });
 
   it.each`
     daysNumber | expectedMonths
-    ${40}      | ${1}
+    ${35}      | ${1}
     ${45}      | ${2}
-    ${44}      | ${1}
-    ${57}      | ${2}
-    ${76}      | ${3}
+    ${65}      | ${2}
+    ${78}      | ${3}
   `(
-    "calculates number of months from days in approximately - for $daysNumber",
+    "calculates months from days correctly for $daysNumber",
     ({ daysNumber, expectedMonths }) => {
       const result = getDurationInMonths(daysNumber);
       expect(result.value).toBe(expectedMonths);
